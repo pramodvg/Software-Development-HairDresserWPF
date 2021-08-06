@@ -1,0 +1,136 @@
+﻿<Window x:Class="HairDresserWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HairDresserWPF"
+        mc:Ignorable="d"
+        Title="Hair Dresser App" Height="570" Width="800" Background="#FFDCE5FF">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+
+            <Label Content="Hair Dresser Appointment" HorizontalAlignment="Stretch" FontWeight="Bold" Margin="0,0,0,10" FontSize="14" Foreground="White" Background="Navy" VerticalAlignment="Center" Width="800"/>
+
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="Height" Value="20"/>
+                        <Setter Property="Width" Value="140"/>
+                        <Setter Property="Text" Value=""/>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="FontWeight" Value="Medium"/>
+                        <Setter Property="Foreground" Value="Navy"/>
+                        <Setter Property="Height" Value="30"/>
+                    </Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                    </Style>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                        <Setter Property="Margin" Value="0,5,0,0"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Content="Time Slot" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                <ComboBox x:Name="timeSlotMenu" Grid.Column="1" Margin="10,0,10,0" Width="140" Height="20" Grid.Row="1" SelectedIndex="0">
+                    <ComboBoxItem Content="09:00 AM"/>
+                    <ComboBoxItem Content="10:00 AM"/>
+                    <ComboBoxItem Content="11:00 AM"/>
+                    <ComboBoxItem Content="12:00 PM"/>
+                    <ComboBoxItem Content="01:00 PM"/>
+                    <ComboBoxItem Content="02:00 PM"/>
+                    <ComboBoxItem Content="03:00 PM"/>
+                    <ComboBoxItem Content="04:00 PM"/>
+                    <ComboBoxItem Content="05:00 PM"/>
+                    <ComboBoxItem Content="06:00 PM"/>
+                    <ComboBoxItem Content="07:00 PM"/>
+                </ComboBox>
+                <Label Name="timeslotErrorLabel" Content="Please Select Time SLot" Grid.Row="1" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Name" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBox Name="nameInput"  Grid.Row="2" Grid.Column="1" ToolTip="Enter Your Name" TextChanged="onTextChange"/>
+                <Label Name="nameErrorLabel" Content="Enter Valid Name" Grid.Row="2" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Age" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBox Name="ageInput" Grid.Row="3" Grid.Column="1" ToolTip="Enter Your Age" KeyUp="ageOnKeyUp" TextChanged="onTextChange"/>
+                <Label Name="ageErrorLabel" Content="Enter Valid Age (1-100) " Grid.Row="3" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Height (ft)" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBox Name="heightInput"   Grid.Row="4" Grid.Column="1"  ToolTip="Enter Your Height" TextChanged="onTextChange"/>
+                <Label Name="heightErrorLabel" Content="Enter Valid Height (1-10ft)" Grid.Row="4" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Credit Card" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBox Name="creditCardInput"  Grid.Row="5" Grid.Column="1" ToolTip="Enter Your 16 digit Credit Card Number" TextChanged="onTextChange"/>
+                <Label Name="creditCardErrorLabel" Content="Enter Valid 16 digit Credit Card" Grid.Row="5" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Gender" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Margin="0,-4.2,0,0" VerticalAlignment="Center" Width="140" >
+                    <RadioButton x:Name="male" GroupName="gender" VerticalAlignment="Center" Checked="RadioButton_Checked" IsChecked="True">Male</RadioButton>
+                    <RadioButton x:Name="female" GroupName="gender" Margin="10,0,0,0" VerticalAlignment="Center" Checked="RadioButton_Checked">Female</RadioButton>
+                </StackPanel>
+                <Label Name="genderErrorLabel" Content="Please Select Gender" Grid.Row="6" Grid.Column="2" Foreground="Red" VerticalAlignment="Center" Margin="0,0,5,0" Visibility="Hidden" />
+
+                <Label Content="Services" Grid.Row="7" Grid.Column="0" VerticalAlignment="Top" Margin="10,0,0,0"/>
+                <StackPanel Orientation="Vertical" Grid.Row="7" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"  >
+                    <CheckBox x:Name="commonCheckBox" Grid.Row="7" Grid.Column="1"  IsChecked="True" ToolTip="HairTrim, HairWash, HairDye" >Common</CheckBox>
+                    <CheckBox x:Name="gentlemenCheckBox" Grid.Row="7" Grid.Column="1" IsEnabled="False" ToolTip="Trim Beard and Moustache" >Gentleman</CheckBox>
+                    <CheckBox x:Name="ladiesCheckBox" Grid.Row="7" Grid.Column="1" IsEnabled="False" ToolTip="Occasional Hair Styling" >Ladies</CheckBox>
+                    <CheckBox x:Name="ChildrenCheckBox" Grid.Row="7" Grid.Column="1" IsEnabled="False" ToolTip="Sensitive Trimmers and adjustable chair" >Children</CheckBox>
+                </StackPanel>
+                <Label Name="serviceErrorText" Content="Select Atleast One Service" Grid.Row="7" Grid.Column="2" Foreground="Red" VerticalAlignment="Top" Margin="0,0,5,0" Visibility="Hidden" />
+                
+
+
+                <Button Content="Book Appointment" Name="bookAppointment" Grid.Row="8"  Margin="10,20,0,0" Width="131" Click="bookAppointment_Click" />
+                <Button Content="View Appointment" Name="ViewAppointment" Grid.Row="8" Margin="9.8,21.6,0,2" Grid.Column="1" HorizontalAlignment="Left" Width="131" Click="ViewAppointment_Click" />
+                <Label Name="sortLabel" HorizontalAlignment="Right" Content="Sort By : Age" Grid.Row="8" Grid.Column="2" Foreground="Navy" VerticalAlignment="Bottom" Margin="0,0,5,0" Visibility="Hidden" />
+            </Grid>
+            <DataGrid x:Name="grdPeople" HorizontalAlignment="Left" Height="100" 
+                  VerticalAlignment="Top" Width="399" 
+                  ItemsSource="{Binding Appointment}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Customer1.CustomerName}"/>
+                    <DataGridTextColumn Header="Age" Binding="{Binding Customer1.CustomerAge}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="156" VerticalAlignment="Center" Width="750" Grid.ColumnSpan="3" Margin="10.3,10,0,0">
+                <ScrollViewer Background="White">
+                    <TextBlock x:Name="viewBox" TextWrapping="Wrap" Text="" Margin="5,5,0,0" FontSize="13" FontWeight="SemiBold"/>
+                </ScrollViewer>
+            </Border>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -119,7 +119,7 @@
             </Grid>
             <DataGrid x:Name="grdPeople" HorizontalAlignment="Left" Height="100" 
                   VerticalAlignment="Top" Width="399" 
-                  ItemsSource="{Binding Appointment}" AutoGenerateColumns="False">
+                  ItemsSource="{Binding Appointment}" AutoGenerateColumns="False" LoadingRow="Showingappointments">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Customer1.CustomerName}"/>
                     <DataGridTextColumn Header="Age" Binding="{Binding Customer1.CustomerAge}"/>

@@ -106,11 +106,10 @@ namespace HairDresserWPF
             var query = from appointment in bookedAppointments.bookedAppointmentsList.Cast<Appointment>()
                         orderby appointment.Customer1.CustomerAge
                         select appointment;
-
+     
             grdPeople.ItemsSource = query;
 
-            /* viewBox.Text = String.Empty;
-             sortLabel.Visibility = Visibility.Visible;*/
+          
 
             // Read from Binary File and populating Appointment List
             /* BookedAppointments bookedAppointments = operations.ReadFromBinFile("AppointmentsFile.txt");
@@ -327,6 +326,23 @@ namespace HairDresserWPF
             TextBox textBox = (TextBox)sender;
             textBox.Foreground = Brushes.Black;
             textBox.BorderBrush = Brushes.LightGray;
+        }
+
+        private void Showingappointments(object sender, DataGridRowEventArgs e)
+        {
+            var row = e.Row;
+            var person = row.DataContext as Appointment;
+            if (sender == grdPeople)
+            {
+                if (person.Customer1.CustomerAge > 50)
+                {
+                    row.Background = new SolidColorBrush(Colors.Red);
+                }
+            }
+            else 
+            {
+                row.Background = new SolidColorBrush(Colors.Green);
+            }
         }
     }
 }

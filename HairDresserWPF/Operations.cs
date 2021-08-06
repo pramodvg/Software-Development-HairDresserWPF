@@ -11,15 +11,10 @@ namespace HairDresserWPF
 {
     class Operations
     {
-        string fileName = "AppointmentsFile.txt";
         string XmlFileName = "allappointments.xml";
         public Operations()
         {
-            // Deleting the file if already Exists.
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
+            
         }
 
         public BookedAppointments ReadFromBinFile()
